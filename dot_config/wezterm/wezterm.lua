@@ -16,7 +16,7 @@ local is_windows = function()
 end
 
 if is_windows() then
-  config.default_prog = { 'wsl', '-d', 'NixOS', '--cd', '~' }
+  config.default_prog = { 'wsl', '-d', '--cd', '~' }
 end
 
 config.launch_menu = {}
@@ -40,11 +40,7 @@ config.color_scheme = "Catppuccin Mocha"
 
 config.font = wezterm.font("FiraCode Nerd Font Mono")
 
-if is_windows() then
-  config.font_size = 12
-else
-  config.font_size = 16
-end
+config.font_size = 12
 
 config.enable_tab_bar = false
 
