@@ -1,0 +1,100 @@
+{
+    "app_config": {
+        "audio_config": {
+            "audio": "pipewire"
+        },
+        "bluetooth_config": {
+            "enabled": true
+        },
+        "fonts_config": {
+            "fonts": [
+                "noto-fonts",
+                "noto-fonts-emoji",
+                "noto-fonts-cjk"
+            ]
+        },
+        "power_management_config": {
+            "power_management": "power-profiles-daemon"
+        },
+        "print_service_config": {
+            "enabled": true
+        }
+    },
+    "archinstall_language": "English",
+    "bootloader_config": {
+        "bootloader": "Limine",
+        "removable": false,
+        "uki": false
+    },
+    "custom_commands": [
+        "curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz; tar xvf cachyos-repo.tar.xz; pushd cachyos-repo; ./cachyos-repo.sh; popd",
+        "pacman -S linux-cachyos linux-cachyos-headers",
+        "pacman -S --needed base-devel; git clone https://aur.archlinux.org/paru.git; pushd paru; makepkg -si; popd",
+        "gawk -i inplace -v cmd=\"\\$(command -v noctalia-greeter-session)\" '$0 ~ /^command = / {\\$0=\"command = \\\\\\\"\" cmd \"\\\\\\\"\"} 1' file",
+        "pacman -Rs dms-greeter"
+    ],
+    "firmware_optdeps": [],
+    "hostname": "archlinux",
+    "kernels": [
+        "linux-zen"
+    ],
+    "locale_config": {
+        "console_font": "default8x16",
+        "kb_layout": "us",
+        "sys_enc": "UTF-8",
+        "sys_lang": "en_US.UTF-8"
+    },
+    "network_config": {
+        "type": "nm"
+    },
+    "ntp": true,
+    "packages": [
+        "btop",
+        "fcitx5",
+        "fcitx5-configtool",
+        "fcitx5-hangul",
+        "fcitx5-unikey",
+        "nano",
+        "neovim",
+        "niri",
+        "noctalia",
+        "noctalia-greeter",
+        "openssh",
+        "polkit",
+        "power-profiles-daemon",
+        "smartmontools",
+        "udiskie",
+        "udisks2",
+        "udisks2-btrfs",
+        "wezterm",
+        "wget",
+        "xdg-desktop-portal-kde",
+        "xdg-utils",
+        "xorg-xwayland",
+        "obsidian",
+        "chezmoi",
+        "ttf-firacode-nerd",
+        "pcmanfm-qt"
+    ],
+    "pacman_config": {
+        "color": true,
+        "parallel_downloads": 5
+    },
+    "profile_config": {
+        "gfx_driver": "Intel (open-source)",
+        "greeter": null,
+        "profile": {
+            "custom_settings": {},
+            "details": [],
+            "main": "Minimal"
+        }
+    },
+    "script": null,
+    "services": [],
+    "swap": {
+        "algorithm": "zstd",
+        "enabled": true
+    },
+    "timezone": "Australia/Adelaide",
+    "version": "4.5"
+}
