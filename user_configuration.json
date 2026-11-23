@@ -30,7 +30,7 @@
         "curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz; tar xvf cachyos-repo.tar.xz; pushd cachyos-repo; gawk -i inplace '/(^|[[:space:]])pacman([[:space:]]|$)/ && $0 !~ /--noconfirm/ { sub(/pacman[[:space:]]+/, \"&--noconfirm \") } 1' cachyos-repo.sh; ./cachyos-repo.sh; popd",
         "pacman -S --noconfirm linux-cachyos linux-cachyos-headers",
         "pacman -S --needed --noconfirm base-devel; git clone https://aur.archlinux.org/paru.git; pushd paru; makepkg -si; popd",
-        "gawk -i inplace -v cmd=\"\\$(command -v noctalia-greeter-session)\" '$0 ~ /^command = / {\\$0=\"command = \\\\\\\"\" cmd \"\\\\\\\"\"} 1' file",
+	"gawk -i inplace -v cmd=\"$(command -v nocalia-greeter-session)\" '/^command =/ {$0 = \"command = \" cmd} {print}' /etc/greetd/config.toml",
         "mkdir -p /home/bebbs; chown -R bebbs: /home/bebbs; sudo -u bebbs chezmoi init --apply BebbsKing"
     ],
     "firmware_optdeps": [],
