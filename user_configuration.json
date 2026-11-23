@@ -27,11 +27,11 @@
         "uki": false
     },
     "custom_commands": [
-        "curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz; tar xvf cachyos-repo.tar.xz; pushd cachyos-repo; ./cachyos-repo.sh; popd",
-        "pacman -S linux-cachyos linux-cachyos-headers",
-        "pacman -S --needed base-devel; git clone https://aur.archlinux.org/paru.git; pushd paru; makepkg -si; popd",
+        "curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz; tar xvf cachyos-repo.tar.xz; pushd cachyos-repo; gawk -i inplace '/(^|[[:space:]])pacman([[:space:]]|$)/ && $0 !~ /--noconfirm/ { $0 = $0 \" --noconfirm\" } 1' cachyos-repo.sh; ./cachyos-repo.sh; popd",
+        "pacman -S --noconfirm linux-cachyos linux-cachyos-headers",
+        "pacman -S --needed --noconfirm base-devel; git clone https://aur.archlinux.org/paru.git; pushd paru; makepkg -si; popd",
         "gawk -i inplace -v cmd=\"\\$(command -v noctalia-greeter-session)\" '$0 ~ /^command = / {\\$0=\"command = \\\\\\\"\" cmd \"\\\\\\\"\"} 1' file",
-        "pacman -Rs dms-greeter"
+        "mkdir -p /home/bebbs; chown -R bebbs: /home/bebbs; sudo -u bebbs chezmoi init --apply BebbsKing"
     ],
     "firmware_optdeps": [],
     "hostname": "archlinux",
